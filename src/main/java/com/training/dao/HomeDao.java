@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.training.model.User;
@@ -23,11 +25,11 @@ public class HomeDao implements IHomeDao {
 				+"databaseName=credentials;"+
 				"encrypt=true;trustServerCertificate=true";
 		
-		String user = "sa";
+		String userDb = "sa";
 		
-		String password = "reallyStrongPwd123";
+		String passwordDb = "reallyStrongPwd123";
 		
-		Connection con =DriverManager.getConnection(url,user,password);  
+		Connection con =DriverManager.getConnection(url,userDb,passwordDb);  
 		if(con!=null) {
 			System.out.println("Connection established successfully.");
 		}
@@ -35,12 +37,30 @@ public class HomeDao implements IHomeDao {
 			System.out.println("Connection unsuccessful.");
 		}
 		
-//		String Query = "select * from credentials";
-//		
-//		PreparedStatement stmt =con.prepareStatement(Query);
-//		
-//		ResultSet rs = stmt.executeQuery();
+		String Query = "select * from credentials";
 		
-	return null;
+		PreparedStatement stmt =con.prepareStatement(Query);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs!=null) {
+			List<User> userList = new ArrayList();
+			while (rs.next()) {
+				userList.add(new User(
+						rs.getString("username"), 
+						rs.getString("user_password")));
+				
+			}
+//			Collections.sort(productList,new PriceComparator());
+			for(User user:userList) {
+				System.out.println(user.getUsername() + " " + user.getPassword());
+				
+			}
+		}
+		else {
+			System.out.println("No results found.");
+		}
+
+		return null;
 	}
 }
