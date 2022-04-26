@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="success.css" />
 <title>Insert title here</title>
 </head>
 <body>
-<h1>this is the home page</h1>
- <h1>redirected from servlet. ${userName}</h1>
+<h1 class="success">Login successful.</h1>
+ <h2>Welcome, ${userName}</h2>
 </body>
 </html>

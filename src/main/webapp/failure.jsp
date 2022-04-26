@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="failure.css" />
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Sorry, user not found</h1>
+<h1 class="failure">Sorry, user not found</h1>
 </body>
 </html>
